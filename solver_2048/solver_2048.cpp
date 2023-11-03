@@ -12,13 +12,14 @@ enum Move {
 struct Eval {
     float val = 0;
     Move move;
-    Eval(int val) {
+    Eval(float val) {
         this->val = val;
     }
 };
 
 
-Eval calculatePos(int board[4][4], int depth);
+Eval Algorithm(int board[4][4], int depth);
+float CalculatePos(int board[4][4]);
 
 
 
@@ -46,7 +47,7 @@ int main()
     //    for (int j = 0; j < 4; ++j) {
     //    }
     //}
-    switch (calculatePos(board,1).move) {
+    switch (Algorithm(board,1).move) {
     case w:
         std::cout << "w";
         break;
@@ -63,13 +64,39 @@ int main()
 }
 
 
-Eval calculatePos(int board[4][4], int depth) {
-    //int board_cp[4][4];
-    //for (int z = 0; z < 4; ++z)
-    //    std::copy(std::begin(board[z]), std::end(board[z]), std::begin(board_cp[z]));
+Eval Algorithm(int board[4][4], int depth) {
+    if (depth == 0) {
+        return CalculatePos(board);
+    }
+    int board_cp[4][4];
+    for (int z = 0; z < 4; ++z)
+        std::copy(std::begin(board[z]), std::end(board[z]), std::begin(board_cp[z]));
+    //FOR W
+        // CALCPOS(POS + GEN2(ON SOME POS))*0.90 + CALCPOS(POS + GEN4(ON SOME POS))*0.10 - and for rest pos
+        // all poses / all posibilities 
+    //FOR A
+        //same
+    //FOR S
+    //FOR D
+
+    //RETURN max(FORW,FORA,FORS,FORD)
+
+    
+    
+    
     Eval Evaluation(rand());
     Evaluation.move = Move(rand() % 4);
     return Evaluation;
 }
+
+float CalculatePos(int board[4][4]) {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            //EVAL POS
+        }
+    }
+}
+
+
 
 
