@@ -1,6 +1,27 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+
+enum Move {
+    w = 0,
+    a = 1,
+    s = 2,
+    d = 3
+};
+
+struct Eval {
+    float val = 0;
+    Move move;
+    Eval(int val) {
+        this->val = val;
+    }
+};
+
+
+Eval calculatePos(int board[4][4], int depth);
+
+
+
 int main()
 {
     srand(time(NULL));
@@ -25,18 +46,30 @@ int main()
     //    for (int j = 0; j < 4; ++j) {
     //    }
     //}
-    switch (rand()%4) {
-    case 0:
+    switch (calculatePos(board,1).move) {
+    case w:
         std::cout << "w";
         break;
-    case 1:
+    case a:
         std::cout << "a";
         break;
-    case 2:
+    case s:
         std::cout << "s";
         break;
-    case 3:
+    case d:
         std::cout << "d";
         break;
     }
 }
+
+
+Eval calculatePos(int board[4][4], int depth) {
+    //int board_cp[4][4];
+    //for (int z = 0; z < 4; ++z)
+    //    std::copy(std::begin(board[z]), std::end(board[z]), std::begin(board_cp[z]));
+    Eval Evaluation(rand());
+    Evaluation.move = Move(rand() % 4);
+    return Evaluation;
+}
+
+
